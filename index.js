@@ -17,6 +17,7 @@ client.on('error', console.error);
 
 client.on('ready', () =>
 {
+	client.user.setStatus("dnd")
     client.user.setActivity(`${prefix}yardım | Made By pRx`);
     console.log('Ready!');
 });
@@ -455,7 +456,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false)
             voiceChannel: voiceChannel,
             connection: null,
             songs: [],
-            volume: 5,
+            volume: 7,
             playing: true,
         };
         queue.set(message.guild.id, queueConstruct);
