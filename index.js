@@ -18,7 +18,7 @@ client.on('error', console.error);
 client.on('ready', () =>
 {
 	client.user.setStatus("dnd")
-    client.user.setActivity(`${prefix}yardım | Made By pRx`);
+    client.user.setActivity(`${prefix}| Made By pRx`);
     console.log('Ready!');
 });
 
@@ -41,8 +41,10 @@ client.on('message', async message =>
     const searchString = args.slice(1).join(' ');
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(message.guild.id);
+	let command = msg.content.toLowerCase().split(' ')[0];
+	command = command.slice(prefix.length)
 
-    if(message.content.startsWith(`${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}p`) || message.content.startsWith(`${prefix}oynat`))
+    if(command === `${prefix}play` ||command ===`${prefix}çal` ||command === `${prefix}p` || command === `${prefix}oynat`)
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
@@ -133,7 +135,7 @@ client.on('message', async message =>
             return handleVideo(video, message, voiceChannel);
         }
     }
-    else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
+    else if(command === `${prefix}ara` || command === `${prefix}search`)
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
@@ -202,7 +204,7 @@ client.on('message', async message =>
         }
         return handleVideo(video, message, voiceChannel);
     }
-    else if(message.content.startsWith(`${prefix}skip`) || message.content.startsWith(`${prefix}geç`))
+    else if(command ===`${prefix}skip` || command === `${prefix}geç`)
     {
         if(!message.member.voiceChannel) 
         {
@@ -219,7 +221,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Geç komudu kullanıldı!');
         return;
     }
-    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}dur`) || message.content.startsWith(`${prefix}dc`))
+    else if(command === `${prefix}stop` || command === `${prefix}dur` || command === `${prefix}dc`)
     {
         if(!message.member.voiceChannel) 
         {
@@ -237,7 +239,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Dur komudu kullanıldı!');
         return message.react('🛑');
     }
-    else if(message.content.startsWith(`${prefix}np`) || message.content.startsWith(`${prefix}şimdiçalan`) || message.content.startsWith(`${prefix}şç`) || message.content.startsWith(`${prefix}çalan`) || message.content.startsWith(`${prefix}şimdiki`))
+    else if(command === `${prefix}np` || command === `${prefix}şimdiçalan` || command === `${prefix}şç` || command === `${prefix}çalan` || command === `${prefix}şimdiki`)
     {
         if(!serverQueue) 
         {
@@ -291,7 +293,7 @@ client.on('message', async message =>
             return message.channel.send(embed);
         }
     } */
-    else if(message.content.startsWith(`${prefix}queue`) || message.content.startsWith(`${prefix}kuyruk`) || message.content.startsWith(`${prefix}sıra`))
+    else if(command === `${prefix}queue` || command === `${prefix}kuyruk` || command === `${prefix}sıra`)
     {
         if(!serverQueue) 
         {
@@ -310,7 +312,7 @@ client.on('message', async message =>
 
         return message.channel.send(queuetext);
     }
-    else if(message.content.startsWith(`${prefix}pause`) || message.content.startsWith(`${prefix}duraklat`))
+    else if(command === `${prefix}pause` || command === `${prefix}duraklat`)
     {
         if(serverQueue && serverQueue.playing) 
         {
@@ -325,7 +327,7 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(message.content.startsWith(`${prefix}resume`) || message.content.startsWith(`${prefix}devamet`) || message.content.startsWith(`${prefix}devam`))
+    else if(command === `${prefix}resume` || command === `${prefix}devamet` || command === `${prefix}devam`)
     {
         if(serverQueue && !serverQueue.playing) 
         {
@@ -340,16 +342,16 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(message.content.startsWith(`${prefix}help`) || message.content.startsWith(`${prefix}yardım`))
+    else if(command === `${prefix}help` || command === `${prefix}yardım`)
     {
         const helptext = new Discord.RichEmbed()
             .setColor('#808080')
             .setTitle('Komutlar')
-            .setDescription(`- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}dur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.`);
+            .setDescription(`- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}dur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.\n\n**NOT:** Komutlar türkçe ve ingilizce olarak kullanılabilir.`);
 
         return message.channel.send(helptext);
     }
-    else if(message.content.startsWith(`${prefix}shuffle`) || message.content.startsWith(`${prefix}karıştır`))
+    else if(command === `${prefix}shuffle` || command === `${prefix}karıştır`)
     {
         if(serverQueue && serverQueue.playing) 
         {
@@ -363,7 +365,7 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(message.content.startsWith(`${prefix}loop`) || message.content.startsWith(`${prefix}repeat`) || message.content.startsWith(`${prefix}döngü`) || message.content.startsWith(`${prefix}tekrarettir`))
+    else if(command === `${prefix}loop` || command === `${prefix}repeat` || command === `${prefix}döngü` || command === `${prefix}tekrarettir`)
     {
         if(serverQueue && serverQueue.playing) 
         {
