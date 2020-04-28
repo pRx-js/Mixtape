@@ -44,7 +44,7 @@ client.on('message', async message =>
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(prefix.length)
 
-    if(message.content === `${prefix}play` ||message.content ===`${prefix}çal` ||command === `${prefix}p` || command === `${prefix}oynat`)
+    if(message.content.startsWith(`${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
@@ -135,7 +135,7 @@ client.on('message', async message =>
             return handleVideo(video, message, voiceChannel);
         }
     }
-    else if(command === `${prefix}ara` || command === `${prefix}search`)
+    else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
@@ -204,7 +204,7 @@ client.on('message', async message =>
         }
         return handleVideo(video, message, voiceChannel);
     }
-    else if(command ===`${prefix}skip` || command === `${prefix}geç`)
+    else if(message.content.startsWith(`${prefix}skip`) || message.content.startsWith(`${prefix}geç`))
     {
         if(!message.member.voiceChannel) 
         {
@@ -221,7 +221,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Geç komudu kullanıldı!');
         return;
     }
-    else if(command === `${prefix}stop` || command === `${prefix}dur` || command === `${prefix}dc`)
+    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}dur`) || message.content.startsWith(`${prefix}dc`))
     {
         if(!message.member.voiceChannel) 
         {
@@ -239,7 +239,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Dur komudu kullanıldı!');
         return message.react('🛑');
     }
-    else if(command === `${prefix}np` || command === `${prefix}şimdiçalan` || command === `${prefix}şç` || command === `${prefix}çalan` || command === `${prefix}şimdiki`)
+    else if(message.content.startsWith(`${prefix}np`) || message.content.startsWith(`${prefix}şimdiçalan`) || message.content.startsWith(`${prefix}şç`) || message.content.startsWith(`${prefix}çalan`) || message.content.startsWith(`${prefix}şimdiki`))
     {
         if(!serverQueue) 
         {
@@ -312,7 +312,7 @@ client.on('message', async message =>
 
         return message.channel.send(queuetext);
     }
-    else if(command === `${prefix}pause` || command === `${prefix}duraklat`)
+    else if(message.content.startsWith(`${prefix}pause`) || message.content.startsWith(`${prefix}duraklat`))
     {
         if(serverQueue && serverQueue.playing) 
         {
@@ -327,7 +327,7 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(command === `${prefix}resume` || command === `${prefix}devamet` || command === `${prefix}devam`)
+    else if(message.content.startsWith(`${prefix}resume`) || message.content.startsWith(`${prefix}devamet`) || message.content.startsWith(`${prefix}devam`))
     {
         if(serverQueue && !serverQueue.playing) 
         {
@@ -342,7 +342,7 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(command === `${prefix}help` || command === `${prefix}yardım`)
+    else if(message.content.startsWith(`${prefix}help`) || message.content.startsWith(`${prefix}yardım`))
     {
         const helptext = new Discord.RichEmbed()
             .setColor('#808080')
@@ -365,7 +365,7 @@ client.on('message', async message =>
             return message.channel.send(`Şu anda oynatılan hiçbir şey yok.`);
         }
     }
-    else if(command === `${prefix}loop` || command === `${prefix}repeat` || command === `${prefix}döngü` || command === `${prefix}tekrarettir`)
+    else if(message.content.startsWith(`${prefix}loop`) || message.content.startsWith(`${prefix}repeat`) || message.content.startsWith(`${prefix}döngü`))
     {
         if(serverQueue && serverQueue.playing) 
         {
@@ -458,7 +458,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false)
             voiceChannel: voiceChannel,
             connection: null,
             songs: [],
-            volume: 7,
+            volume: 6,
             playing: true,
         };
         queue.set(message.guild.id, queueConstruct);
