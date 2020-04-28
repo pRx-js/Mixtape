@@ -152,10 +152,10 @@ client.on('message', async message =>
 	    var connection = await voiceChannel.join();
 	    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalına katıldı.`);
    }
-    else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
+    /*else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
 	    {    
 	 const voiceChannel = message.member.voiceChannel;
-		            if(!voiceChannel) 
+	 if(!voiceChannel) 
         {
             embed.setColor('#ffff00');
             embed.setDescription('You need to be in a voice channel to play music!');
@@ -165,7 +165,7 @@ client.on('message', async message =>
         queue.delete(guild.id);
 		     voiceChannel.leave();
 		    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalından ayrıldı.`);
-    }
+    }*/
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
@@ -378,7 +378,7 @@ client.on('message', async message =>
         const helptext = new Discord.RichEmbed()
             .setColor('#808080')
             .setTitle('Komutlar')
-            .setDescription(`- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}durdur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.\n\n**NOT:** Komutlar türkçe ve ingilizce olarak kullanılabilir.`);
+            .setDescription(`-**${prefix}katıl**: Bot odanıza katılır.\n- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}durdur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.\n\n**NOT:** Komutlar türkçe ve ingilizce olarak kullanılabilir.`);
 
         return message.channel.send(helptext);
     }
