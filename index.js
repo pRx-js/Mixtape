@@ -152,8 +152,24 @@ client.on('message', async message =>
 	    var connection = await voiceChannel.join();
 	    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalına katıldı.`);
    }
-    /*else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
+    else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
 	    {    
+		/*if (!message.member.voiceChannel) {
+    message.channel.send("Bir sesli kanalda değilsiniz!");
+  } else {
+    if (!message.guild.me.voiceChannel) {
+      message.channel.send("Bir sesli kanalda değilim!");
+    } else {
+      let bot = message.guild.me.voiceChannelID;
+      let user = message.member.voiceChannelID;
+      if (bot !== user) {
+        message.channel.send("Seninle aynı sesli kanalda değilim!");
+      } else {
+        message.channel.send("Kanaldan başarıyla ayrıldım!");
+        message.guild.me.voiceChannel.leave();
+      }
+    }
+  }*/
 	 const voiceChannel = message.member.voiceChannel;
 	 if(!voiceChannel) 
         {
@@ -163,9 +179,16 @@ client.on('message', async message =>
         }
 	const serverQueue = queue.get(guild.id);
         queue.delete(guild.id);
+	 let bot = message.guild.me.voiceChannelID;
+      let user = message.member.voiceChannelID;
+      if (bot !== user) {
+        message.channel.send("Bot ile aynı kanalda değilsiniz.");
+      } else {
+        message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalından ayrıldı.`);
+        voiceChannel.leave();
 		     voiceChannel.leave();
-		    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalından ayrıldı.`);
-    }*/
+		    return message.channel.send();
+    }
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
