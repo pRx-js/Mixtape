@@ -324,7 +324,7 @@ client.on('message', async message =>
             return message.channel.send(embed);
         }
     } */
-    else if(command === `${prefix}queue` || command === `${prefix}kuyruk` || command === `${prefix}sıra`)
+    else if(message.content.startsWith(`${prefix}queue`) || message.content.startsWith(`${prefix}kuyruk`) || message.content.startsWith(`${prefix}sıra`))
     {
         if(!serverQueue) 
         {
@@ -382,7 +382,7 @@ client.on('message', async message =>
 
         return message.channel.send(helptext);
     }
-    else if(command === `${prefix}shuffle` || command === `${prefix}karıştır`)
+    else if(message.content.startsWith(`${prefix}shuffle`) || message.content.startsWith(`${prefix}karıştır`))
     {
         if(serverQueue && serverQueue.playing) 
         {
