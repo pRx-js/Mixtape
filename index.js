@@ -41,10 +41,10 @@ client.on('message', async message =>
     const searchString = args.slice(1).join(' ');
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(message.guild.id);
-	let command = msg.content.toLowerCase().split(' ')[0];
+	let command = message.content.toLowerCase().split(' ')[0];
 	command = command.slice(prefix.length)
 
-    if(message.content.startsWith(`${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
+    if(command === `${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
