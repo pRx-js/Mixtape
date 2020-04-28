@@ -151,6 +151,14 @@ client.on('message', async message =>
         }
 	    var connection = await voiceChannel.join();
    }
+    else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
+	    {    
+	 const voiceChannel = message.member.voiceChannel;
+	const serverQueue = queue.get(guild.id);
+    {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+    }}
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
@@ -237,7 +245,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Geç komudu kullanıldı!');
         return;
     }
-    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}durdur`) || message.content.startsWith(`${prefix}dc`))
+    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}durdur`))
     {
         if(!message.member.voiceChannel) 
         {
