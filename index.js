@@ -41,8 +41,6 @@ client.on('message', async message =>
     const searchString = args.slice(1).join(' ');
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(message.guild.id);
-    let command = message.content.toLowerCase().split(' ')[0];
-    command = command.slice(prefix.length)
 
     if(message.content.startsWith(`${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
     {
@@ -135,6 +133,24 @@ client.on('message', async message =>
             return handleVideo(video, message, voiceChannel);
         }
     }
+   else if(message.content.startsWith(`${prefix}join`) || message.content.startsWith(`${prefix}katıl`))
+    {   
+        const voiceChannel = message.member.voiceChannel;
+        if(!voiceChannel) 
+        {
+            embed.setColor('#ffff00');
+            embed.setDescription('You need to be in a voice channel to play music!');
+            return message.channel.send(`Müzik çalmak için ses kanalında olmanız gerekiyor!`);
+        }
+        const permissions = voiceChannel.permissionsFor(message.client.user);
+        if(!permissions.has('CONNECT'))
+        {
+            embed.setColor('#ffff00');
+            embed.setDescription('Bot!');
+            return message.channel.send(`Botun odanıza girmesi için gerekli izinleri yok!`);
+        }
+	    var connection = await voiceChannel.join();
+   }
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
