@@ -150,15 +150,16 @@ client.on('message', async message =>
             return message.channel.send(`Botun odanıza girmesi için gerekli izinleri yok!`);
         }
 	    var connection = await voiceChannel.join();
+	    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalına katıldı.`);
    }
     else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
 	    {    
 	 const voiceChannel = message.member.voiceChannel;
 	const serverQueue = queue.get(guild.id);
-    {
         serverQueue.voiceChannel.leave();
         queue.delete(guild.id);
-    }}
+		    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalından ayrıldı.`);
+    }
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
