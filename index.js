@@ -152,9 +152,9 @@ client.on('message', async message =>
 	    var connection = await voiceChannel.join();
 	    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalına katıldı.`);
    }
-    else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
+ /*   else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
 	    {    
-		/*if (!message.member.voiceChannel) {
+		if (!message.member.voiceChannel) {
     message.channel.send("Bir sesli kanalda değilsiniz!");
   } else {
     if (!message.guild.me.voiceChannel) {
@@ -169,7 +169,7 @@ client.on('message', async message =>
         message.guild.me.voiceChannel.leave();
       }
     }
-  }*/
+  }
 	 const voiceChannel = message.member.voiceChannel;
 	 if(!voiceChannel) 
         {
@@ -188,7 +188,7 @@ client.on('message', async message =>
         voiceChannel.leave();
 		     voiceChannel.leave();
 		    return message.channel.send();
-    }
+    }*/
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
     {
         const voiceChannel = message.member.voiceChannel;
