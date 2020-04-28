@@ -44,7 +44,7 @@ client.on('message', async message =>
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(prefix.length)
 
-    if(command === `${prefix}play` ||command ===`${prefix}çal` ||command === `${prefix}p` || command === `${prefix}oynat`)
+    if(message.content === `${prefix}play` ||message.content ===`${prefix}çal` ||command === `${prefix}p` || command === `${prefix}oynat`)
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
