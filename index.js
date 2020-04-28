@@ -44,7 +44,7 @@ client.on('message', async message =>
     let command = message.content.toLowerCase().split(' ')[0];
     command = command.slice(prefix.length)
 
-    if(command === `${prefix}play` || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
+    if(message.content.startsWith(`${prefix}play`) || message.content.startsWith(`${prefix}çal`) || message.content.startsWith(`${prefix}oynat`))
     {
         const voiceChannel = message.member.voiceChannel;
         if(!voiceChannel) 
@@ -221,7 +221,7 @@ client.on('message', async message =>
         serverQueue.connection.dispatcher.end('Geç komudu kullanıldı!');
         return;
     }
-    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}dur`) || message.content.startsWith(`${prefix}dc`))
+    else if(message.content.startsWith(`${prefix}stop`) || message.content.startsWith(`${prefix}durdur`) || message.content.startsWith(`${prefix}dc`))
     {
         if(!message.member.voiceChannel) 
         {
@@ -347,7 +347,7 @@ client.on('message', async message =>
         const helptext = new Discord.RichEmbed()
             .setColor('#808080')
             .setTitle('Komutlar')
-            .setDescription(`- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}dur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.\n\n**NOT:** Komutlar türkçe ve ingilizce olarak kullanılabilir.`);
+            .setDescription(`- **${prefix}çal [link/isim/playlist]**: Belirtilen YouTube bağlantısını veya oynatma listesini oynatır.\n- **${prefix}ara [isim]**: En iyi 10 YouTube arama sonucunu görüntüler ve kullanıcının 1-10 arasındaki değerleri kullanarak seçim yapmasına olanak tanır. 10 Saniye içinde seçim yapılmadığında iptal edilir.\n- **${prefix}geç**: Oyantılan şarkıyı geçer.\n- **${prefix}duraklat**: Oynatılan şarkıyı duraklatır.\n- **${prefix}kuyruk**: Geçerli kuyruğu görüntüler.\n- **${prefix}devam**: Duraklatılan şarkıya devam eder..\n- **${prefix}şimdiçalan**: Geçerli şarkıyı ve onu isteyen kullanıcıyı görüntüler.\n- **${prefix}karıştır**: Geçerli kuyruğu karıştırır.\n- **${prefix}durdur**: Tüm müzikleri durdurur ve kuyruğu temizler.\n- **${prefix}döngü**: Geçerli şarkıdaki döngüyü ayarlar. Atlamada sıfırlanır.\n\n**NOT:** Komutlar türkçe ve ingilizce olarak kullanılabilir.`);
 
         return message.channel.send(helptext);
     }
