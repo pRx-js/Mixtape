@@ -18,7 +18,7 @@ client.on('error', console.error);
 client.on('ready', () =>
 {
 	client.user.setStatus("dnd")
-    client.user.setActivity(`${prefix}| Made By pRx`);
+    client.user.setActivity(`${prefix}yardım | Made By pRx`);
     console.log('Ready!');
 });
 
