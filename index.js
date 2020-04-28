@@ -140,7 +140,7 @@ client.on('message', async message =>
         {
             embed.setColor('#ffff00');
             embed.setDescription('You need to be in a voice channel to play music!');
-            return message.channel.send(`Müzik çalmak için ses kanalında olmanız gerekiyor!`);
+            return message.channel.send(`Botun katılması için ses kanalında olmanız gerekiyor!`);
         }
         const permissions = voiceChannel.permissionsFor(message.client.user);
         if(!permissions.has('CONNECT'))
@@ -155,9 +155,15 @@ client.on('message', async message =>
     else if(message.content.startsWith(`${prefix}disconnect`) || message.content.startsWith(`${prefix}ayrıl`))
 	    {    
 	 const voiceChannel = message.member.voiceChannel;
+		            if(!voiceChannel) 
+        {
+            embed.setColor('#ffff00');
+            embed.setDescription('You need to be in a voice channel to play music!');
+            return message.channel.send(`Botun ayrılması için ses kanalında olmanız gerekiyor!`);
+        }
 	const serverQueue = queue.get(guild.id);
-        serverQueue.voiceChannel.leave();
         queue.delete(guild.id);
+		     voiceChannel.leave();
 		    return message.channel.send(`Bot başarıyla <#${voiceChannel.id}> kanalından ayrıldı.`);
     }
     else if(message.content.startsWith(`${prefix}ara`) || message.content.startsWith(`${prefix}search`))
